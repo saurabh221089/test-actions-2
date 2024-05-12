@@ -1,0 +1,32 @@
+name: Deploy Workflow
+on: push
+jobs:
+  test:
+    runs-on: uuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install NodeJs
+        uses: actions/setup-node
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: NPM test
+        run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install NodeJs
+        uses: actions/setup-node
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Build package
+        run: npm run build
+      - name: Deploy
+        run: echo "Deploying package..."
