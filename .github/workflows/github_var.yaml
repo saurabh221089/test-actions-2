@@ -6,3 +6,15 @@ jobs:
     steps:
       - name: Output GitHub context
         run: echo "${{ toJSON(github) }}"
+      - name: Print Branch name
+        run: echo "${{ github.ref_name }}"
+      - name: Print Workspace
+        run: |
+          echo "${{ github.workspace }}"
+          ls -lh
+      - name: Print repository name
+        run: echo "${{ github.repository }}"
+      - name: Access GitHub repo Secrets
+        run: |
+          echo "USERNAME: ${{ secrets.GH_USERNAME }}"
+          echo "PASSWORD: ${{ secrets.GH_PASSWORD }}"
